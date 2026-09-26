@@ -91,7 +91,7 @@ is pinned to this editor release. For local registry development, use
 Build with `dyn build path/to/project --debug --output build/app` (use `app.exe`
 on Windows). Create `build/` first. Linux stores DWARF in the executable. The local
 compiler changes accompanying this repository add Windows `app.exe.pdb`, macOS
-`app.dSYM`, and fix LLDB local-variable visibility. **Preview.5 does not include
+`app.dSYM`, and fix LLDB local-variable visibility. **Preview.6 does not include
 those fixes.** Keep sidecars beside their executable. Optimized builds can omit
 variables even with `--release --debug-info`.
 
@@ -120,7 +120,7 @@ storage use the debugger's normal member display.
 revision. Generated files carry a comment. Update them locally with:
 
 ```sh
-python scripts/update-release.py 0.1.0-preview.5
+python scripts/update-release.py 0.1.0-preview.6
 python scripts/sync.py --check
 python tests/lsp.py
 python scripts/package.py

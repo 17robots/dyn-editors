@@ -1,8 +1,9 @@
 local root = assert(vim.env.DYN_EDITORS)
 vim.opt.runtimepath:prepend(root .. '/build/deps/mason.nvim')
+local install_root = vim.env.DYN_MASON_ROOT or (root .. '/build/mason')
 require('mason').setup({
-  install_root_dir = root .. '/build/mason',
-  registries = { 'file:' .. root .. '/mason' },
+  install_root_dir = install_root,
+  registries = { vim.env.DYN_MASON_REGISTRY or ('file:' .. root .. '/mason') },
 })
 local registry = require('mason-registry')
 local done, failure = false, nil
@@ -17,7 +18,7 @@ registry.refresh(function(success)
 end)
 assert(vim.wait(180000, function() return done end, 100), 'Mason timed out')
 assert(not failure, failure)
-local output = vim.fn.system({ root .. '/build/mason/bin/dyn', 'version' })
+local output = vim.fn.system({ install_root .. '/bin/dyn', 'version' })
 assert(vim.v.shell_error == 0, output)
 print('PASS Mason SDK install: ' .. output)
 vim.cmd.qa()
