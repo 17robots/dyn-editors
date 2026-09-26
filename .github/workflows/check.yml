@@ -9,6 +9,7 @@ permissions:
 jobs:
   contracts:
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-24.04, macos-15, windows-latest]
     runs-on: ${{ matrix.os }}
@@ -24,6 +25,14 @@ jobs:
         with:
           experimental: true
           working_directory: shared
+      - name: Add SDK binaries to PATH
+        shell: python
+        run: |
+          import os, pathlib, subprocess
+          sdk = subprocess.check_output(["mise", "where", "github:17robots/dyn"], cwd="shared", text=True).strip()
+          with open(os.environ["GITHUB_PATH"], "a") as output:
+              output.write(str(pathlib.Path(sdk) / "bin") + "\n")
+      - run: dyn --version
       - run: python scripts/sync.py --check
       - run: python tests/lsp.py
       - run: npm ci --ignore-scripts
@@ -48,6 +57,14 @@ jobs:
       - uses: jdx/mise-action@v2
         with:
           working_directory: shared
+      - name: Add SDK binaries to PATH
+        shell: python
+        run: |
+          import os, pathlib, subprocess
+          sdk = subprocess.check_output(["mise", "where", "github:17robots/dyn"], cwd="shared", text=True).strip()
+          with open(os.environ["GITHUB_PATH"], "a") as output:
+              output.write(str(pathlib.Path(sdk) / "bin") + "\n")
+      - run: dyn --version
       - name: Install test tools
         run: |
           sudo apt-get update

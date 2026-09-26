@@ -20,7 +20,9 @@ def run(messages, root):
     for message in messages:
         body = json.dumps(message).encode()
         wire += b'Content-Length: %d\r\n\r\n' % len(body) + body
-    process = subprocess.run([DYN,'lsp'],input=wire,capture_output=True,timeout=30,check=True)
+    process = subprocess.run([DYN,'lsp'],input=wire,capture_output=True,timeout=30)
+    if process.returncode:
+        raise RuntimeError(process.stderr.decode(errors='replace'))
     output = process.stdout
     responses = []
     while output:
