@@ -11,3 +11,5 @@ with `dyn build --debug`. The accompanying compiler changes fix LLDB locals and
 add macOS dSYM and Windows PDB output; preview.5 does not contain these fixes.
 
 Compiler: https://github.com/17robots/dyn
+
+Licensed under MIT. The Dyn compiler retains its separate preview license.

@@ -26,6 +26,8 @@ for editor in ('helix','neovim','mason','zed'):
         for path in sorted((ROOT/editor).rglob('*')):
             if not path.is_file() or any(part in ('target','__pycache__') for part in path.parts): continue
             archive.add(path,arcname=str(Path(f'dyn-{editor}')/path.relative_to(ROOT/editor)),recursive=False)
+        if not (ROOT/editor/'LICENSE').exists():
+            archive.add(ROOT/'LICENSE',arcname=f'dyn-{editor}/LICENSE')
         archive.add(ROOT/'README.md',arcname=f'dyn-{editor}/README.md')
         archive.add(ROOT/'shared/debug',arcname=f'dyn-{editor}/shared/debug',filter=lambda info: None if '__pycache__' in info.name else info)
         if editor == 'neovim':
@@ -39,6 +41,7 @@ registry = subprocess.check_output(['yq','-o','json',str(ROOT/'mason/packages/dy
 registry = json.dumps([json.loads(registry)],indent=2).encode()
 with zipfile.ZipFile(DIST/'registry.json.zip','w',zipfile.ZIP_DEFLATED) as archive:
     archive.writestr('registry.json',registry)
+    archive.write(ROOT/'LICENSE','LICENSE')
 (DIST/'checksums.txt').write_text(hashlib.sha256((DIST/'registry.json.zip').read_bytes()).hexdigest()+'  registry.json.zip\n'+hashlib.sha256(registry).hexdigest()+'  registry.json\n')
 with (DIST/'SHA256SUMS').open('w') as output:
     for path in sorted(DIST.iterdir()):

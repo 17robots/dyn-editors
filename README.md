@@ -135,5 +135,7 @@ for repeatable CI commands. Zed and Sublime have also loaded the local integrati
 Broader GUI checks and VS Code forks still need manual testing. This repository does not claim every
 editor or platform has been interactively tested.
 
-Current packaging uses `UNLICENSED`: no editor-package distribution license has
-been granted yet. Dyn itself retains its existing preview license.
+Editor integrations in this repository are licensed under [MIT](LICENSE),
+copyright Matthew Dray. Dependencies retain their own licenses. The Dyn compiler
+and SDK remain covered by their separate preview license; the Mason package
+describes that compiler license, not the license of this repository.

@@ -4,7 +4,7 @@
   "description": "Dyn language support using the Dyn SDK.",
   "version": "0.1.0",
   "publisher": "17robots",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "engines": {
     "vscode": "^1.85.0"
   },

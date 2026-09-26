@@ -7,6 +7,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 def outputs():
+    license_text = (ROOT / 'LICENSE').read_text()
+    for editor in ('vscode', 'zed', 'sublime'):
+        yield f'{editor}/LICENSE', license_text
     release = json.loads((ROOT / 'shared/release.json').read_text())
     grammar = release['grammar']
     yield 'zed/extension.toml', f'''id = "dyn"
