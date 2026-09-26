@@ -15,10 +15,14 @@ version = "0.1.0"
 schema_version = 1
 authors = ["Matthew Dray <mdray@duck.com>"]
 description = "Dyn language support"
+languages = ["languages/dyn"]
+[lib]
+kind = "Rust"
+version = "0.7.0"
 [grammars.dyn]
 repository = "{grammar['repository']}"
 rev = "{grammar['revision']}"
-[language-servers.dyn]
+[language_servers.dyn]
 name = "Dyn Language Server"
 languages = ["Dyn"]
 '''

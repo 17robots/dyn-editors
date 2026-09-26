@@ -131,8 +131,8 @@ DYN=/path/to/new/dyn LLDB_DAP=lldb-dap python tests/debugger.py
 `tests/mason.lua` expects Mason in `build/deps/mason.nvim` and `yq` on PATH; it
 installs into `build/mason`, leaving normal editor settings alone. Packaging also
 requires Mike Farah’s `yq` for the publishable Mason registry JSON. See the workflow
-for repeatable CI commands. Zed compiles locally; Zed and Sublime GUI behavior and
-VS Code forks still need manual checks. This repository does not claim every
+for repeatable CI commands. Zed and Sublime have also loaded the local integration and connected to Dyn.
+Broader GUI checks and VS Code forks still need manual testing. This repository does not claim every
 editor or platform has been interactively tested.
 
 Current packaging uses `UNLICENSED`: no editor-package distribution license has
