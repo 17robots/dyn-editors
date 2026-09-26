@@ -131,7 +131,7 @@ before changing pins. An optional `--grammar-revision <full-commit>` updates gra
 pins; review query compatibility after changing it. Packaging produces local
 artifacts in ignored `dist/`, never publishes. CI builds packages and exercises
 the server on Linux, macOS and Windows. Check the [CI runs](https://github.com/17robots/dyn-editors/actions) for native
-platform results. Marketplace publication remains a separate step.
+platform results. Marketplace publication remains a separate step; see [publishing instructions](PUBLISHING.md).
 
 Additional checks:
 

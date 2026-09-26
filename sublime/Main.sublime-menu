@@ -1,0 +1,22 @@
+[
+  {
+    "id": "preferences",
+    "children": [
+      {
+        "id": "package-settings",
+        "children": [
+          {
+            "caption": "Dyn",
+            "children": [
+              {
+                "caption": "Settings",
+                "command": "edit_settings",
+                "args": {"base_file": "${packages}/Dyn/LSP-Dyn.sublime-settings"}
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

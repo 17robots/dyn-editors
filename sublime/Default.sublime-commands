@@ -1,0 +1,7 @@
+[
+  {
+    "caption": "Preferences: Dyn LSP Settings",
+    "command": "edit_settings",
+    "args": {"base_file": "${packages}/Dyn/LSP-Dyn.sublime-settings"}
+  }
+]
