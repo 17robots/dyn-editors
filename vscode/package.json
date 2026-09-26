@@ -71,7 +71,7 @@
     }
   },
   "scripts": {
-    "package": "vsce package --allow-missing-repository",
+    "package": "vsce package",
     "check": "node --check extension.js"
   },
   "dependencies": {
@@ -80,5 +80,14 @@
   "devDependencies": {
     "@vscode/vsce": "3.7.1",
     "@vscode/test-electron": "2.5.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/17robots/dyn-editors.git",
+    "directory": "vscode"
+  },
+  "homepage": "https://github.com/17robots/dyn-editors#readme",
+  "bugs": {
+    "url": "https://github.com/17robots/dyn-editors/issues"
   }
 }

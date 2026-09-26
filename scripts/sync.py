@@ -18,6 +18,7 @@ version = "0.1.0"
 schema_version = 1
 authors = ["Matthew Dray <mdray@duck.com>"]
 description = "Dyn language support"
+repository = "https://github.com/17robots/dyn-editors"
 languages = ["languages/dyn"]
 [lib]
 kind = "Rust"

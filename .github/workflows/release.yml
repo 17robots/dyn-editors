@@ -1,0 +1,36 @@
+name: Publish editor release
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: read
+jobs:
+  checks:
+    uses: ./.github/workflows/check.yml
+  release:
+    needs: checks
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check release version
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          version = json.loads(Path('vscode/package.json').read_text())['version']
+          assert os.environ['RELEASE_TAG'] == 'v' + version
+          PY
+      - uses: actions/download-artifact@v4
+        with:
+          name: dyn-editors
+          path: dist
+      - name: Publish packages
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          gh release create "$RELEASE_TAG" dist/* --verify-tag --prerelease --title "Dyn editors $RELEASE_TAG" --notes-file RELEASE_NOTES.md

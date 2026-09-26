@@ -1,0 +1,26 @@
+{
+  "schema_version": "4.0.0",
+  "packages": [
+    {
+      "name": "Dyn",
+      "description": "Dyn syntax highlighting and language-server integration (requires LSP).",
+      "author": "Matthew Dray",
+      "homepage": "https://github.com/17robots/dyn-editors",
+      "issues": "https://github.com/17robots/dyn-editors/issues",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "date": "2026-09-26 00:00:00",
+          "sublime_text": ">=4132",
+          "platforms": [
+            "*"
+          ],
+          "python_versions": [
+            "3.8"
+          ],
+          "url": "https://github.com/17robots/dyn-editors/releases/download/v0.1.0/Dyn.sublime-package"
+        }
+      ]
+    }
+  ]
+}

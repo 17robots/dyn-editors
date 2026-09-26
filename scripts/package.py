@@ -20,7 +20,7 @@ for path in (ROOT/'vscode').glob('*.vsix'):
 subprocess.run(['cargo','build','--manifest-path',str(ROOT/'zed/Cargo.toml'),'--target','wasm32-wasip2','--release','--locked'],check=True)
 with zipfile.ZipFile(DIST/'Dyn.sublime-package','w',zipfile.ZIP_DEFLATED) as archive:
     for path in sorted((ROOT/'sublime').iterdir()):
-        if path.is_file(): archive.write(path,path.name)
+        if path.is_file() and path.name != 'packages.json': archive.write(path,path.name)
 for editor in ('helix','neovim','mason','zed'):
     with tarfile.open(DIST/f'dyn-{editor}.tar.gz','w:gz') as archive:
         for path in sorted((ROOT/editor).rglob('*')):

@@ -2,8 +2,8 @@
 
 One home for editor adapters, using the compiler's `dyn lsp` and the pinned
 [Tree-sitter grammar](https://github.com/17robots/tree-sitter-dyn). Compiler and
-grammar sources remain in their own repositories. These packages are local
-previews; nothing here is published to an editor marketplace or Mason's registry.
+grammar sources remain in their own repositories. Preview packages are available from [GitHub Releases](https://github.com/17robots/dyn-editors/releases/tag/v0.1.0).
+Editor marketplace listings require separate approval/publication; use the methods below meanwhile.
 
 ## Install the compiler
 
@@ -22,18 +22,33 @@ use their opened workspace. You do not need to add a project manifest for LSP.
 
 ## Editors
 
-| Editor | Local installation | Executable override |
+| Editor | Installation | Executable override |
 | --- | --- | --- |
-| VS Code / compatible forks | `cd vscode; npm ci --ignore-scripts; npm run package`, then **Extensions: Install from VSIX** | `dyn.server.path`, `dyn.server.args` |
+| VS Code / compatible forks | Download `dyn-0.1.0.vsix` from Releases, then **Extensions: Install from VSIX** | `dyn.server.path`, `dyn.server.args` |
 | Zed | **zed: install dev extension**, select `zed/`; requires Rust and `wasm32-wasip2` | `lsp.dyn.binary.path`, `lsp.dyn.binary.arguments` |
 | Helix | Merge `helix/languages.toml` into your config; copy `helix/runtime/queries/dyn` into your runtime queries; run `hx --grammar fetch` and `hx --grammar build` | `[language-server.dyn] command`, `args` |
 | Neovim 0.11+ | Add `neovim/` to runtimepath and call `require('dyn').setup()` | `setup({cmd = {'/path/to/dyn', 'lsp'}})` |
-| Sublime Text 4 | Install Package Control's **LSP**, then copy `sublime/` into `Packages/Dyn` | User `LSP-Dyn.sublime-settings`: `{"command": ["/path/to/dyn", "lsp"]}` |
+| Sublime Text 4 | Install **LSP** using Package Control; add the repository URL below and install **Dyn** | User `LSP-Dyn.sublime-settings`: `{"command": ["/path/to/dyn", "lsp"]}` |
 
 VS Code provides TextMate highlighting plus LSP semantic tokens. Zed, Helix and
 Neovim use Tree-sitter. Sublime includes a syntax definition. Completion, hover,
 navigation, references, rename, formatting and diagnostics come from the same
 server; an editor displays only the protocol features it implements.
+
+For Zed, Helix and Neovim, download this repository's source archive or clone
+`https://github.com/17robots/dyn-editors.git`, then follow the table. Zed's dev
+extension installer builds the grammar and extension for you.
+
+For Sublime, run **Package Control: Add Repository** and enter:
+
+```text
+https://raw.githubusercontent.com/17robots/dyn-editors/main/sublime/packages.json
+```
+
+Then **Package Control: Install Package → Dyn**. Install **LSP** separately first;
+it is an editor package, not a Python library dependency. Restart after installing
+LSP if Dyn was already loaded. For manual installation, download
+`Dyn.sublime-package` and place it in Sublime's `Installed Packages` directory.
 
 Neovim example (replace the checkout path):
 
@@ -54,13 +69,12 @@ nvim-treesitter dependency is needed. LSP still works without a parser.
 
 ## Mason
 
-Mason installs the SDK, not the Neovim configuration. Install **Mike Farah's yq**
-for Mason's local file-registry reader, then configure:
+Mason installs the SDK, not the Neovim configuration. Configure the public registry:
 
 ```lua
 require('mason').setup({
   registries = {
-    'file:/absolute/path/to/dyn-editors/mason',
+    'github:17robots/dyn-editors@v0.1.0',
     'github:mason-org/mason-registry',
   },
 })
@@ -68,9 +82,9 @@ require('mason').setup({
 
 Run `:MasonUpdate`, then `:MasonInstall dyn`. Use `require('dyn').setup()` as above.
 The package preserves the SDK layout and exposes its executable through Mason.
-Unsupported operating systems/architectures have no package target. Publishing a
-GitHub registry later requires uploading `dist/registry.json.zip` and `dist/checksums.txt`; merely
-creating a public repository will not make `github:17robots/dyn-editors` usable.
+Unsupported operating systems/architectures have no package target. The registry
+is pinned to this editor release. For local registry development, use
+`file:/absolute/path/to/dyn-editors/mason` and install Mike Farah’s `yq`.
 
 ## Debugging
 
@@ -116,8 +130,8 @@ The update command verifies downloads against GitHub's published SHA-256 digest
 before changing pins. An optional `--grammar-revision <full-commit>` updates grammar
 pins; review query compatibility after changing it. Packaging produces local
 artifacts in ignored `dist/`, never publishes. CI builds packages and exercises
-the server on Linux, macOS and Windows. Native jobs have not run for these local
-changes. Registry and marketplace publication remain a separate step.
+the server on Linux, macOS and Windows. Check the [CI runs](https://github.com/17robots/dyn-editors/actions) for native
+platform results. Marketplace publication remains a separate step.
 
 Additional checks:
 
