@@ -1,0 +1,7 @@
+name = "Dyn"
+grammar = "dyn"
+path_suffixes = ["dyn"]
+line_comments = ["// "]
+block_comment = ["/*", "*/"]
+tab_size = 4
+hard_tabs = false

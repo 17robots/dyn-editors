@@ -1,0 +1,41 @@
+%YAML 1.2
+---
+name: Dyn
+file_extensions: [dyn]
+scope: source.dyn
+contexts:
+  main:
+    - match: '//'
+      scope: punctuation.definition.comment.dyn
+      push:
+        - meta_scope: comment.line.double-slash.dyn
+        - match: $
+          pop: true
+    - match: '/\*'
+      push: comment
+    - match: '"'
+      push: string
+    - match: "'([^'\\\\]|\\\\.)*'"
+      scope: string.quoted.single.dyn
+    - match: '\b(fn|pub|const|type|struct|enum|packed|distinct|extern|use|defer|if|else|for|in|is|case|break|continue|return)\b'
+      scope: keyword.control.dyn
+    - match: '#[A-Za-z_]\w*'
+      scope: support.function.builtin.dyn
+    - match: '\b(true|false|null)\b'
+      scope: constant.language.dyn
+    - match: '\b([iu](8|16|32|64|size)|f(32|64)|bool|void|any|str)\b'
+      scope: storage.type.dyn
+    - match: '\b(0[xX][0-9a-fA-F_]+|0[bB][01_]+|[0-9][0-9_]*(\.[0-9_]+)?([eE][+-]?[0-9_]+)?)\b'
+      scope: constant.numeric.dyn
+  comment:
+    - meta_scope: comment.block.dyn
+    - match: '/\*'
+      push: comment
+    - match: '\*/'
+      pop: true
+  string:
+    - meta_scope: string.quoted.double.dyn
+    - match: '\\.'
+      scope: constant.character.escape.dyn
+    - match: '"'
+      pop: true

@@ -1,0 +1,73 @@
+name: Editor integrations
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  contracts:
+    strategy:
+      matrix:
+        os: [ubuntu-24.04, macos-15, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: jdx/mise-action@v2
+        with:
+          experimental: true
+          working_directory: shared
+      - run: python scripts/sync.py --check
+      - run: python tests/lsp.py
+      - run: npm ci --ignore-scripts
+        working-directory: vscode
+      - run: npm run check
+        working-directory: vscode
+      - run: npm run package
+        working-directory: vscode
+  packages:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-wasip2
+      - uses: jdx/mise-action@v2
+        with:
+          working_directory: shared
+      - name: Install test tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb
+          mise install yq@4.47.2 neovim@0.12.5
+      - run: python scripts/install-parser.py --runtime build/nvim-runtime
+      - run: mise exec yq@4.47.2 neovim@0.12.5 -- nvim --headless -u NONE -l tests/neovim.lua
+        env:
+          DYN_EDITORS: ${{ github.workspace }}
+      - run: mise exec yq@4.47.2 neovim@0.12.5 -- nvim --headless -u NONE -l tests/queries.lua
+      - name: Check Mason install
+        run: |
+          git init build/deps/mason.nvim
+          git -C build/deps/mason.nvim fetch --depth=1 https://github.com/mason-org/mason.nvim.git 2a6940af80375532e5e9e7c1f2fc6319a1b7a69d
+          git -C build/deps/mason.nvim checkout FETCH_HEAD
+          mise exec yq@4.47.2 neovim@0.12.5 -- nvim --headless -u NONE -l tests/mason.lua
+        env:
+          DYN_EDITORS: ${{ github.workspace }}
+      - run: mise exec yq@4.47.2 -- python scripts/package.py
+      - run: xvfb-run -a node tests/run-vscode.cjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dyn-editors
+          path: dist/

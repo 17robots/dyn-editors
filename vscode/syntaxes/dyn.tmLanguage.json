@@ -1,0 +1,73 @@
+{
+  "scopeName": "source.dyn",
+  "patterns": [
+    {
+      "name": "comment.line.double-slash.dyn",
+      "match": "//.*$"
+    },
+    {
+      "name": "comment.block.dyn",
+      "begin": "/\\*",
+      "end": "\\*/",
+      "patterns": [
+        {
+          "include": "#blockComment"
+        }
+      ]
+    },
+    {
+      "name": "string.quoted.double.dyn",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.dyn",
+          "match": "\\\\."
+        }
+      ]
+    },
+    {
+      "name": "string.quoted.single.dyn",
+      "begin": "'",
+      "end": "'",
+      "patterns": [
+        {
+          "name": "constant.character.escape.dyn",
+          "match": "\\\\."
+        }
+      ]
+    },
+    {
+      "name": "keyword.control.dyn",
+      "match": "\\b(fn|pub|const|type|struct|enum|packed|distinct|extern|use|defer|if|else|for|in|is|case|break|continue|return)\\b"
+    },
+    {
+      "name": "support.function.builtin.dyn",
+      "match": "#[A-Za-z_]\\w*"
+    },
+    {
+      "name": "constant.language.dyn",
+      "match": "\\b(true|false|null)\\b"
+    },
+    {
+      "name": "storage.type.dyn",
+      "match": "\\b([iu](8|16|32|64|size)|f(32|64)|bool|void|any|str)\\b"
+    },
+    {
+      "name": "constant.numeric.dyn",
+      "match": "\\b(0[xX][0-9a-fA-F_]+|0[bB][01_]+|[0-9][0-9_]*(\\.[0-9_]+)?([eE][+-]?[0-9_]+)?)\\b"
+    }
+  ],
+  "repository": {
+    "blockComment": {
+      "name": "comment.block.dyn",
+      "begin": "/\\*",
+      "end": "\\*/",
+      "patterns": [
+        {
+          "include": "#blockComment"
+        }
+      ]
+    }
+  }
+}

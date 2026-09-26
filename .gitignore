@@ -1,0 +1,8 @@
+build/
+dist/
+node_modules/
+target/
+__pycache__/
+*.vsix
+
+.vscode-test/

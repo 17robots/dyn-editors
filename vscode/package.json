@@ -1,0 +1,84 @@
+{
+  "name": "dyn",
+  "displayName": "Dyn",
+  "description": "Dyn language support using the Dyn SDK.",
+  "version": "0.1.0",
+  "publisher": "17robots",
+  "license": "UNLICENSED",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onLanguage:dyn"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": false
+    }
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "dyn",
+        "aliases": [
+          "Dyn",
+          "dyn"
+        ],
+        "extensions": [
+          ".dyn"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "dyn",
+        "scopeName": "source.dyn",
+        "path": "./syntaxes/dyn.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "dyn.restart",
+        "title": "Dyn: Restart Language Server"
+      }
+    ],
+    "configuration": {
+      "title": "Dyn",
+      "properties": {
+        "dyn.server.path": {
+          "type": "string",
+          "default": "dyn",
+          "scope": "machine-overridable",
+          "description": "Dyn SDK executable. Keep the full SDK installed."
+        },
+        "dyn.server.args": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "lsp"
+          ],
+          "scope": "machine-overridable",
+          "description": "Arguments for the language server."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "package": "vsce package --allow-missing-repository",
+    "check": "node --check extension.js"
+  },
+  "dependencies": {
+    "vscode-languageclient": "9.0.1"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "3.7.1",
+    "@vscode/test-electron": "2.5.2"
+  }
+}

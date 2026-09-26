@@ -1,0 +1,8 @@
+{
+  "command": [
+    "dyn",
+    "lsp"
+  ],
+  "selector": "source.dyn",
+  "enabled": true
+}

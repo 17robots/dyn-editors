@@ -1,0 +1,16 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "debugger_configurations": [
+    {
+      "name": "Debug Dyn",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${folder}/build/app",
+      "cwd": "${folder}"
+    }
+  ]
+}
