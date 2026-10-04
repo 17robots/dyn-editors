@@ -14,7 +14,7 @@ def outputs():
     grammar = release['grammar']
     yield 'zed/extension.toml', f'''id = "dyn"
 name = "Dyn"
-version = "0.1.0"
+version = "0.1.1"
 schema_version = 1
 authors = ["Matthew Dray <mdray@duck.com>"]
 description = "Dyn language support"

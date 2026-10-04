@@ -9,8 +9,8 @@
       "issues": "https://github.com/17robots/dyn-editors/issues",
       "releases": [
         {
-          "version": "0.1.0",
-          "date": "2026-09-26 00:00:00",
+          "version": "0.1.1",
+          "date": "2026-10-04 02:09:13",
           "sublime_text": ">=4132",
           "platforms": [
             "*"
@@ -18,7 +18,7 @@
           "python_versions": [
             "3.8"
           ],
-          "url": "https://github.com/17robots/dyn-editors/releases/download/v0.1.0/Dyn.sublime-package"
+          "url": "https://github.com/17robots/dyn-editors/releases/download/v0.1.1/Dyn.sublime-package"
         }
       ]
     }

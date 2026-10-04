@@ -2,7 +2,7 @@
 
 One home for editor adapters, using the compiler's `dyn lsp` and the pinned
 [Tree-sitter grammar](https://github.com/17robots/tree-sitter-dyn). Compiler and
-grammar sources remain in their own repositories. Preview packages are available from [GitHub Releases](https://github.com/17robots/dyn-editors/releases/tag/v0.1.0).
+grammar sources remain in their own repositories. Preview packages are available from [GitHub Releases](https://github.com/17robots/dyn-editors/releases/tag/v0.1.1).
 Editor marketplace listings require separate approval/publication; use the methods below meanwhile.
 
 ## Install the compiler
@@ -24,7 +24,7 @@ use their opened workspace. You do not need to add a project manifest for LSP.
 
 | Editor | Installation | Executable override |
 | --- | --- | --- |
-| VS Code / compatible forks | Download `dyn-0.1.0.vsix` from Releases, then **Extensions: Install from VSIX** | `dyn.server.path`, `dyn.server.args` |
+| VS Code / compatible forks | Download `dyn-0.1.1.vsix` from Releases, then **Extensions: Install from VSIX** | `dyn.server.path`, `dyn.server.args` |
 | Zed | **zed: install dev extension**, select `zed/`; requires Rust and `wasm32-wasip2` | `lsp.dyn.binary.path`, `lsp.dyn.binary.arguments` |
 | Helix | Merge `helix/languages.toml` into your config; copy `helix/runtime/queries/dyn` into your runtime queries; run `hx --grammar fetch` and `hx --grammar build` | `[language-server.dyn] command`, `args` |
 | Neovim 0.11+ | Add `neovim/` to runtimepath and call `require('dyn').setup()` | `setup({cmd = {'/path/to/dyn', 'lsp'}})` |
@@ -74,7 +74,7 @@ Mason installs the SDK, not the Neovim configuration. Configure the public regis
 ```lua
 require('mason').setup({
   registries = {
-    'github:17robots/dyn-editors@v0.1.0',
+    'github:17robots/dyn-editors@v0.1.1',
     'github:mason-org/mason-registry',
   },
 })

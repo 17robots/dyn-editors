@@ -4,8 +4,8 @@ GitHub releases are built and tested by `.github/workflows/release.yml` when a
 `v*` tag is pushed. The tag must match `vscode/package.json`. Use non-colocated jj:
 
 ```sh
-jj tag set v0.1.0 -r main
-jj git push --tag v0.1.0
+jj tag set v0.1.1 -r main
+jj git push --tag v0.1.1
 ```
 
 Before the next release, update the extension versions, `sublime/packages.json`,
@@ -15,7 +15,7 @@ Windows and publishes only after every required check succeeds.
 
 ## VS Code Marketplace and Open VSX
 
-Both accept the released `dyn-0.1.0.vsix`; no separate extension implementation
+Both accept the released `dyn-0.1.1.vsix`; no separate extension implementation
 is needed. Download the VSIX and `SHA256SUMS` from the release and verify its hash.
 
 - [Visual Studio Marketplace](https://marketplace.visualstudio.com/manage):
@@ -33,7 +33,7 @@ merely because the GitHub release exists.
 ## Zed
 
 The registry supports a subdirectory in a repository. Its Dyn entry will use
-`submodule = "extensions/dyn"`, `path = "zed"`, and `version = "0.1.0"`, with
+`submodule = "extensions/dyn"`, `path = "zed"`, and `version = "0.1.1"`, with
 the submodule pointing to this repository at the released commit.
 Follow the [publishing guide](https://zed.dev/docs/extensions/publishing/publishing-guide).
 
