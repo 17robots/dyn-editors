@@ -2,7 +2,7 @@
   "name": "dyn",
   "displayName": "Dyn",
   "description": "Dyn language support using the Dyn SDK.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "17robots",
   "license": "MIT",
   "engines": {
