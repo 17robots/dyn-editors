@@ -19,7 +19,7 @@
 ; function
 (fn name: (identifier) @function)
 (extern_fn name: (identifier) @function)
-[ "#alignof" "#bitcast" "#cast" "#len" "#panic" "#reverse" "#sizeof" "#syscall" "#typeof" ] @function.builtin
+[ "#allocator" "#AllocResult" "#alloc" "#alloc_or_panic" "#alloc_uninit" "#alloc_uninit_or_panic" "#alloc_slice" "#alloc_slice_or_panic" "#alloc_slice_uninit" "#alloc_slice_uninit_or_panic" "#alignof" "#bitcast" "#cast" "#len" "#panic" "#reverse" "#sizeof" "#syscall" "#typeof" ] @function.builtin
 (call (primary (identifier) @function))
 (call (primary (field_access (identifier) @function.method)))
 

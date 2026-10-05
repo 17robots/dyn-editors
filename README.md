@@ -153,3 +153,11 @@ Editor integrations in this repository are licensed under [MIT](LICENSE),
 copyright Matthew Dray. Dependencies retain their own licenses. The Dyn compiler
 and SDK remain covered by their separate preview license; the Mason package
 describes that compiler license, not the license of this repository.
+
+## Unreleased allocator syntax
+
+The source grammar and highlighting recognize `Allocator`, typed allocation
+builtins, explicit `_or_panic` forms, and constant array extents. These features
+require a compiler built from the matching allocator changes; the pinned preview
+15 SDK does not gain new compiler features from an editor grammar update. Release
+artifact versions and checksums remain tied to that published SDK.

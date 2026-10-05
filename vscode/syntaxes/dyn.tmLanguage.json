@@ -51,7 +51,7 @@
     },
     {
       "name": "storage.type.dyn",
-      "match": "\\b([iu](8|16|32|64|size)|f(32|64)|bool|void|any|str)\\b"
+      "match": "\\b([iu](8|16|32|64|size)|f(32|64)|bool|void|any|str|Allocator)\\b"
     },
     {
       "name": "constant.numeric.dyn",
