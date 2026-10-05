@@ -154,10 +154,10 @@ copyright Matthew Dray. Dependencies retain their own licenses. The Dyn compiler
 and SDK remain covered by their separate preview license; the Mason package
 describes that compiler license, not the license of this repository.
 
-## Unreleased allocator syntax
+## Allocator syntax (SDK preview 16)
 
-The source grammar and highlighting recognize `Allocator`, typed allocation
-builtins, explicit `_or_panic` forms, and constant array extents. These features
-require a compiler built from the matching allocator changes; the pinned preview
-15 SDK does not gain new compiler features from an editor grammar update. Release
-artifact versions and checksums remain tied to that published SDK.
+The pinned SDK supports `Allocator`, typed allocation builtins, explicit
+`_or_panic` forms, and constant array extents. The grammar and highlighting use the
+matching syntax. Existing applications should follow the
+[preview 16 migration guide](https://github.com/17robots/dyn/releases/download/v0.1.0-preview.16/dyn-0.1.0-preview.16-migration.md)
+before upgrading; restart `dyn lsp` after switching SDKs.

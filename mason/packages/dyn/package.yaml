@@ -6,16 +6,16 @@ licenses: [proprietary]
 languages: [Dyn]
 categories: [Compiler, LSP]
 source:
-  id: pkg:github/17robots/dyn@v0.1.0-preview.15
+  id: pkg:github/17robots/dyn@v0.1.0-preview.16
   asset:
     - target: linux_x64
-      file: dyn-0.1.0-preview.15-linux-x86_64-glibc2.39.tar.gz
+      file: dyn-0.1.0-preview.16-linux-x86_64-glibc2.39.tar.gz
       bin: dyn-sdk/bin/dyn
     - target: darwin_arm64
-      file: dyn-0.1.0-preview.15-macos-aarch64.tar.gz
+      file: dyn-0.1.0-preview.16-macos-aarch64.tar.gz
       bin: dyn-sdk/bin/dyn
     - target: win_x64
-      file: dyn-0.1.0-preview.15-windows-x86_64.zip
+      file: dyn-0.1.0-preview.16-windows-x86_64.zip
       bin: dyn-sdk/bin/dyn.exe
 bin:
   dyn: "{{source.asset.bin}}"
