@@ -154,10 +154,12 @@ copyright Matthew Dray. Dependencies retain their own licenses. The Dyn compiler
 and SDK remain covered by their separate preview license; the Mason package
 describes that compiler license, not the license of this repository.
 
-## Allocator syntax (SDK preview 16)
+## Allocator syntax (SDK preview 16 and newer)
 
 The pinned SDK supports `Allocator`, typed allocation builtins, explicit
 `_or_panic` forms, and constant array extents. The grammar and highlighting use the
 matching syntax. Existing applications should follow the
 [preview 16 migration guide](https://github.com/17robots/dyn/releases/download/v0.1.0-preview.16/dyn-0.1.0-preview.16-migration.md)
 before upgrading; restart `dyn lsp` after switching SDKs.
+
+SDK pins now select preview 17. See the [preview 17 migration guide](https://github.com/17robots/dyn/releases/download/v0.1.0-preview.17/dyn-0.1.0-preview.17-migration.md) for standard streams and arena ownership transfer.
