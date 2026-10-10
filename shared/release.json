@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0-preview.17",
+  "version": "0.1.0-preview.18",
   "repository": "17robots/dyn",
   "grammar": {
     "repository": "https://github.com/17robots/tree-sitter-dyn.git",
@@ -8,20 +8,20 @@
   },
   "platforms": {
     "linux-x64": {
-      "asset": "dyn-0.1.0-preview.17-linux-x86_64-glibc2.39.tar.gz",
-      "sha256": "73cf25d27e9cc9981d30b7d5230e34b43333d1101db92fc7b5de1510105149b5",
+      "asset": "dyn-0.1.0-preview.18-linux-x86_64-glibc2.39.tar.gz",
+      "sha256": "c651ad80e833d2da6f82d39c884ebe7ba141bcd01ab83cc492ae2f8d7f0706f2",
       "directory": "dyn-sdk",
       "binary": "bin/dyn"
     },
     "macos-arm64": {
-      "asset": "dyn-0.1.0-preview.17-macos-aarch64.tar.gz",
-      "sha256": "55a9400f91bc7979b742cd3edc96dd03b6bca093a69a12dd002382553becaab0",
+      "asset": "dyn-0.1.0-preview.18-macos-aarch64.tar.gz",
+      "sha256": "cdba702bc5335a1b42dd0f0995f5417714bc6ef0b5afd2126e42daaebf83dbc0",
       "directory": "dyn-sdk",
       "binary": "bin/dyn"
     },
     "windows-x64": {
-      "asset": "dyn-0.1.0-preview.17-windows-x86_64.zip",
-      "sha256": "252a82c6e492ad3e458ac8e0cc3e886a0197953408270aaa9929a6e33f355051",
+      "asset": "dyn-0.1.0-preview.18-windows-x86_64.zip",
+      "sha256": "400d8735c84ab42cff32cbbc7a63a6c62ec073b7bec68c726c39b1f11bd5b5b9",
       "directory": "dyn-sdk",
       "binary": "bin/dyn.exe"
     }
