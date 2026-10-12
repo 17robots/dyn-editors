@@ -3,7 +3,7 @@
   "repository": "17robots/dyn",
   "grammar": {
     "repository": "https://github.com/17robots/tree-sitter-dyn.git",
-    "revision": "0cc9d798858f5ceb7659fac61e12ac3a62d547cd",
+    "revision": "0704fde9c1f69500ea9b01130299fe295b60e611",
     "generator": "0.25.8"
   },
   "platforms": {

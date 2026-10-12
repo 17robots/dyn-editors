@@ -8,25 +8,25 @@ for _, glob in ipairs({ 'helix/runtime/queries/dyn/*.scm', 'zed/languages/dyn/*.
 end
 local source = [[
 const Count: usize = 4
-fn sample(output: Allocator) #AllocResult([]u64) {
+fn sample($T: type) usize {
   backing: [Count * 2]u8
-  _ = #alloc_or_panic(u8, output)
-  return #alloc_slice(u64, output, 4)
+  return #sizeof(T) + #alignof(T)
 }
 ]]
 local parser = vim.treesitter.get_string_parser(source, 'dyn')
 local root = parser:parse()[1]:root()
-assert(not root:has_error(), 'allocator/constant-array fixture must parse')
+assert(not root:has_error(), 'builtin/constant-array fixture must parse')
 for _, file in ipairs({ 'helix/runtime/queries/dyn/highlights.scm', 'zed/languages/dyn/highlights.scm', 'neovim/queries/dyn/highlights.scm' }) do
   local query = vim.treesitter.query.parse('dyn', table.concat(vim.fn.readfile(file), '\n'))
   local captured = {}
   for id, node in query:iter_captures(root, source, 0, -1) do
     captured[vim.treesitter.get_node_text(node, source)] = query.captures[id]
   end
-  assert(captured['Allocator'] == 'type.builtin', file .. ': Allocator highlight')
-  for _, name in ipairs({ '#AllocResult', '#alloc_or_panic', '#alloc_slice' }) do
+  assert(captured['usize'] == 'type.builtin', file .. ': primitive highlight')
+  assert(captured['$T'] == 'type', file .. ': type parameter highlight')
+  for _, name in ipairs({ '#sizeof', '#alignof' }) do
     assert(captured[name] == 'function.builtin', file .. ': ' .. name .. ' highlight')
   end
-  print('PASS allocator captures: ' .. file)
+  print('PASS builtin captures: ' .. file)
 end
 vim.cmd.qa()
