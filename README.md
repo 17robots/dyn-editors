@@ -2,7 +2,7 @@
 
 One home for editor adapters, using the compiler's `dyn lsp` and the pinned
 [Tree-sitter grammar](https://github.com/17robots/tree-sitter-dyn). Compiler and
-grammar sources remain in their own repositories. Preview packages are available from [GitHub Releases](https://github.com/17robots/dyn-editors/releases/tag/v0.1.4).
+grammar sources remain in their own repositories. Preview packages are available from [GitHub Releases](https://github.com/17robots/dyn-editors/releases/tag/v0.1.5).
 Editor marketplace listings require separate approval/publication; use the methods below meanwhile.
 
 ## Install the compiler
@@ -24,7 +24,7 @@ use their opened workspace. You do not need to add a project manifest for LSP.
 
 | Editor | Installation | Executable override |
 | --- | --- | --- |
-| VS Code / compatible forks | Download `dyn-0.1.4.vsix` from Releases, then **Extensions: Install from VSIX** | `dyn.server.path`, `dyn.server.args` |
+| VS Code / compatible forks | Download `dyn-0.1.5.vsix` from Releases, then **Extensions: Install from VSIX** | `dyn.server.path`, `dyn.server.args` |
 | Zed | **zed: install dev extension**, select `zed/`; requires Rust and `wasm32-wasip2` | `lsp.dyn.binary.path`, `lsp.dyn.binary.arguments` |
 | Helix | Merge `helix/languages.toml` into your config; copy `helix/runtime/queries/dyn` into your runtime queries; run `hx --grammar fetch` and `hx --grammar build` | `[language-server.dyn] command`, `args` |
 | Neovim 0.11+ | Add `neovim/` to runtimepath and call `require('dyn').setup()` | `setup({cmd = {'/path/to/dyn', 'lsp'}})` |
@@ -74,7 +74,7 @@ Mason installs the SDK, not the Neovim configuration. Configure the public regis
 ```lua
 require('mason').setup({
   registries = {
-    'github:17robots/dyn-editors@v0.1.4',
+    'github:17robots/dyn-editors@v0.1.5',
     'github:mason-org/mason-registry',
   },
 })
@@ -89,10 +89,8 @@ is pinned to this editor release. For local registry development, use
 ## Debugging
 
 Build with `dyn build path/to/project --debug --output build/app` (use `app.exe`
-on Windows). Create `build/` first. Linux stores DWARF in the executable. The local
-compiler changes accompanying this repository add Windows `app.exe.pdb`, macOS
-`app.dSYM`, and fix LLDB local-variable visibility. **Preview.6 does not include
-those fixes.** Keep sidecars beside their executable. Optimized builds can omit
+on Windows). Create `build/` first. Linux stores DWARF in the executable. The pinned SDK supports Windows `app.exe.pdb`, macOS
+`app.dSYM`, and LLDB local-variable visibility. Keep sidecars beside their executable. Optimized builds can omit
 variables even with `--release --debug-info`.
 
 Install LLDB and its DAP adapter separately. Use the examples in `shared/debug/`:
@@ -120,7 +118,7 @@ storage use the debugger's normal member display.
 revision. Generated files carry a comment. Update them locally with:
 
 ```sh
-python scripts/update-release.py 0.1.0-preview.6
+python scripts/update-release.py 0.1.0-preview.28
 python scripts/sync.py --check
 python tests/lsp.py
 python scripts/package.py
@@ -162,4 +160,8 @@ matching syntax. Existing applications should follow the
 [preview 16 migration guide](https://github.com/17robots/dyn/releases/download/v0.1.0-preview.16/dyn-0.1.0-preview.16-migration.md)
 before upgrading; restart `dyn lsp` after switching SDKs.
 
-SDK pins now select preview 17. See the [preview 17 migration guide](https://github.com/17robots/dyn/releases/download/v0.1.0-preview.17/dyn-0.1.0-preview.17-migration.md) for standard streams and arena ownership transfer.
+SDK pins select **0.1.0-preview.28**. When upgrading older applications, follow the
+[preview 27 migration guide](https://github.com/17robots/dyn/blob/v0.1.0-preview.28/docs/migrations/0.1.0-preview.27.md)
+for pointer arena handles and standard-library API changes. Preview 28 preserves
+that arena API and improves compiler and language-server performance. Upgrade the
+whole SDK and restart `dyn lsp` after switching versions.
