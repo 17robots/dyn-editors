@@ -26,4 +26,4 @@ args = { program = "{0}", stopOnEntry = false }
 
 [[grammar]]
 name = "dyn"
-source = { git = "https://github.com/17robots/tree-sitter-dyn.git", rev = "7a5a80a7ec668e8422cde090df58c804f380ebc8" }
+source = { git = "https://github.com/17robots/tree-sitter-dyn.git", rev = "d3e4dfac671ed46b7608adb5277d55a484142823" }
