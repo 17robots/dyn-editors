@@ -8,7 +8,7 @@ for _, glob in ipairs({ 'helix/runtime/queries/dyn/*.scm', 'zed/languages/dyn/*.
 end
 local source = [[
 const Count: usize = 4
-fn sample($T: type) usize {
+fn sample(items: []$T) usize {
   backing: [Count * 2]u8
   return #sizeof(T) + #alignof(T)
 }

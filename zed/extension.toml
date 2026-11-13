@@ -11,7 +11,7 @@ kind = "Rust"
 version = "0.7.0"
 [grammars.dyn]
 repository = "https://github.com/17robots/tree-sitter-dyn.git"
-rev = "4d1240746e5fc43175b35bf7fa451696abe42f32"
+rev = "67328748c658747f3fdb3860c8cc4b694d859f95"
 [language_servers.dyn]
 name = "Dyn Language Server"
 languages = ["Dyn"]
