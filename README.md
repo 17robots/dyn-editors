@@ -2,7 +2,7 @@
 
 One home for editor adapters, using the compiler's `dyn lsp` and the pinned
 [Tree-sitter grammar](https://github.com/17robots/tree-sitter-dyn). Compiler and
-grammar sources remain in their own repositories. Preview packages are available from [GitHub Releases](https://github.com/17robots/dyn-editors/releases/tag/v0.1.7).
+grammar sources remain in their own repositories. Preview packages are available from [GitHub Releases](https://github.com/17robots/dyn-editors/releases/tag/v0.1.8).
 Editor marketplace listings require separate approval/publication; use the methods below meanwhile.
 
 ## Install the compiler
@@ -24,7 +24,7 @@ use their opened workspace. You do not need to add a project manifest for LSP.
 
 | Editor | Installation | Executable override |
 | --- | --- | --- |
-| VS Code / compatible forks | Download `dyn-0.1.7.vsix` from Releases, then **Extensions: Install from VSIX** | `dyn.server.path`, `dyn.server.args` |
+| VS Code / compatible forks | Download `dyn-0.1.8.vsix` from Releases, then **Extensions: Install from VSIX** | `dyn.server.path`, `dyn.server.args` |
 | Zed | **zed: install dev extension**, select `zed/`; requires Rust and `wasm32-wasip2` | `lsp.dyn.binary.path`, `lsp.dyn.binary.arguments` |
 | Helix | Merge `helix/languages.toml` into your config; copy `helix/runtime/queries/dyn` into your runtime queries; run `hx --grammar fetch` and `hx --grammar build` | `[language-server.dyn] command`, `args` |
 | Neovim 0.11+ | Add `neovim/` to runtimepath and call `require('dyn').setup()` | `setup({cmd = {'/path/to/dyn', 'lsp'}})` |
@@ -74,7 +74,7 @@ Mason installs the SDK, not the Neovim configuration. Configure the public regis
 ```lua
 require('mason').setup({
   registries = {
-    'github:17robots/dyn-editors@v0.1.7',
+    'github:17robots/dyn-editors@v0.1.8',
     'github:mason-org/mason-registry',
   },
 })
@@ -118,7 +118,7 @@ storage use the debugger's normal member display.
 revision. Generated files carry a comment. Update them locally with:
 
 ```sh
-python scripts/update-release.py 0.1.0-preview.36
+python scripts/update-release.py 0.1.0-preview.37
 python scripts/sync.py --check
 python tests/lsp.py
 python scripts/package.py
@@ -160,8 +160,8 @@ matching syntax. Existing applications should follow the
 [preview 16 migration guide](https://github.com/17robots/dyn/releases/download/v0.1.0-preview.16/dyn-0.1.0-preview.16-migration.md)
 before upgrading; restart `dyn lsp` after switching SDKs.
 
-SDK pins select **0.1.0-preview.36**. That preview standardizes the language
+SDK pins select **0.1.0-preview.37**. Preview 36 standardized the language
 before its freeze; code written for preview 35 or older needs the
-[standardization migration](https://github.com/17robots/dyn/blob/v0.1.0-preview.36/docs/migrations/standard-20261113.md)
-(`tools/migrate-standard.py`). See the [changelog](https://github.com/17robots/dyn/blob/v0.1.0-preview.36/CHANGELOG.md)
+[standardization migration](https://github.com/17robots/dyn/blob/v0.1.0-preview.37/docs/migrations/standard-20261113.md)
+(`tools/migrate-standard.py`). See the [changelog](https://github.com/17robots/dyn/blob/v0.1.0-preview.37/CHANGELOG.md)
 for each preview. Upgrade the whole SDK and restart `dyn lsp` after switching versions.
