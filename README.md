@@ -118,7 +118,7 @@ storage use the debugger's normal member display.
 revision. Generated files carry a comment. Update them locally with:
 
 ```sh
-python scripts/update-release.py 0.1.0-preview.37
+python scripts/update-release.py 0.1.0-preview.38
 python scripts/sync.py --check
 python tests/lsp.py
 python scripts/package.py
@@ -160,8 +160,8 @@ matching syntax. Existing applications should follow the
 [preview 16 migration guide](https://github.com/17robots/dyn/releases/download/v0.1.0-preview.16/dyn-0.1.0-preview.16-migration.md)
 before upgrading; restart `dyn lsp` after switching SDKs.
 
-SDK pins select **0.1.0-preview.37**. Preview 36 standardized the language
+SDK pins select **0.1.0-preview.38**. Preview 36 standardized the language
 before its freeze; code written for preview 35 or older needs the
-[standardization migration](https://github.com/17robots/dyn/blob/v0.1.0-preview.37/docs/migrations/standard-20261113.md)
-(`tools/migrate-standard.py`). See the [changelog](https://github.com/17robots/dyn/blob/v0.1.0-preview.37/CHANGELOG.md)
+[standardization migration](https://github.com/17robots/dyn/blob/v0.1.0-preview.38/docs/migrations/standard-20261113.md)
+(`tools/migrate-standard.py`). See the [changelog](https://github.com/17robots/dyn/blob/v0.1.0-preview.38/CHANGELOG.md)
 for each preview. Upgrade the whole SDK and restart `dyn lsp` after switching versions.
