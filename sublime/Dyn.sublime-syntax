@@ -17,7 +17,7 @@ contexts:
       push: string
     - match: "'([^'\\\\]|\\\\.)*'"
       scope: string.quoted.single.dyn
-    - match: '\b(fn|pub|const|type|struct|enum|packed|distinct|extern|use|defer|if|else|for|in|is|case|break|continue|return)\b'
+    - match: '\b(fn|pub|const|type|struct|enum|packed|distinct|extern|use|defer|if|else|for|in|case|break|continue|return)\b'
       scope: keyword.control.dyn
     - match: '#[A-Za-z_]\w*'
       scope: support.function.builtin.dyn
