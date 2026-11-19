@@ -6,17 +6,20 @@ Editor support for Dyn, licensed under MIT.
 - Sublime: install LSP using Package Control, add the repository URL from the README, then install Dyn.
 - Mason: add `github:17robots/dyn-editors@v0.1.9` to your registries and install `dyn`.
 
-The compiler SDK is installed separately. This release pins Dyn **0.1.0-preview.39**
+The compiler SDK is installed separately. This release pins Dyn **0.1.0-preview.40**
 with verified checksums for Linux x64, macOS ARM64, and Windows x64. Mise and
 Mason install the complete SDK.
 
-Preview 39 removes `union` types, and the pinned Tree-sitter grammar no longer
-parses `union` declarations. Sublime and VS Code no longer highlight `is` as a
-keyword; the grammar dropped it with type patterns.
+The pinned Tree-sitter grammar follows the preview 40 language: it parses
+`#wrapping`, `#step`, the floating-point builtins (`#sqrt`, `#floor`, `#ceil`,
+`#trunc`, `#round`, `#fma`) and bare `{ }` blocks, and no longer parses loop
+labels, `for *const` or `#offset`. Helix, Neovim and Zed queries come from it;
+VS Code and Sublime already match any `#name` as a builtin.
 
-Code that declares unions needs the
-[preview 39 migration](https://github.com/17robots/dyn/blob/v0.1.0-preview.39/docs/migrations/0.1.0-preview.39.md):
-`#bitcast` for bit reinterpretation, payload enums for one-of-several storage.
+Code from preview 39 needs the
+[preview 40 migration](https://github.com/17robots/dyn/blob/v0.1.0-preview.40/docs/migrations/0.1.0-preview.40.md):
+failures go on a `fail.Status` (or `nil`), lookups return their value,
+iterators set `ended`, and `dyn fix` handles the mechanical parts.
 Restart `dyn lsp` after upgrading the SDK.
 
 See the README for installation steps and supported platforms. Marketplace listings
