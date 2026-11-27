@@ -8,8 +8,10 @@ for _, glob in ipairs({ 'helix/runtime/queries/dyn/*.scm', 'zed/languages/dyn/*.
 end
 local source = [[
 const Count: usize = 4
-fn sample(items: []$T) usize {
+enum Err { Missing(str), Timeout(i32) }
+fn sample<T>(items: []T) usize!Err {
   backing: [Count * 2]u8
+  if items.len == 0 { fail .Missing("empty") }
   return #sizeof(T) + #alignof(T)
 }
 ]]
@@ -23,7 +25,8 @@ for _, file in ipairs({ 'helix/runtime/queries/dyn/highlights.scm', 'zed/languag
     captured[vim.treesitter.get_node_text(node, source)] = query.captures[id]
   end
   assert(captured['usize'] == 'type.builtin', file .. ': primitive highlight')
-  assert(captured['$T'] == 'type', file .. ': type parameter highlight')
+  assert(captured['T'] == 'type', file .. ': type parameter highlight')
+  assert(captured['Missing'] == 'constant', file .. ': enum shorthand highlight')
   for _, name in ipairs({ '#sizeof', '#alignof' }) do
     assert(captured[name] == 'function.builtin', file .. ': ' .. name .. ' highlight')
   end

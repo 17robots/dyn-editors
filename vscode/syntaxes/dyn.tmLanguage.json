@@ -27,6 +27,11 @@
       ]
     },
     {
+      "name": "string.quoted.raw.dyn",
+      "begin": "`",
+      "end": "`"
+    },
+    {
       "name": "string.quoted.single.dyn",
       "begin": "'",
       "end": "'",
@@ -39,7 +44,7 @@
     },
     {
       "name": "keyword.control.dyn",
-      "match": "\\b(fn|pub|const|type|struct|enum|packed|distinct|extern|use|defer|if|else|for|in|case|break|continue|return)\\b"
+      "match": "\\b(fn|pub|const|type|struct|enum|packed|distinct|nocopy|extern|use|defer|errdefer|if|else|for|in|case|break|continue|return|try|catch|fail)\\b"
     },
     {
       "name": "support.function.builtin.dyn",
@@ -47,15 +52,15 @@
     },
     {
       "name": "constant.language.dyn",
-      "match": "\\b(true|false|null)\\b"
+      "match": "\\b(true|false|nil)\\b"
     },
     {
       "name": "storage.type.dyn",
-      "match": "\\b([iu](8|16|32|64|size)|f(32|64)|bool|void|any|str|Allocator)\\b"
+      "match": "\\b([iu](8|16|32|64|size)|f(32|64)|bool|rawptr|any|str)\\b"
     },
     {
       "name": "constant.numeric.dyn",
-      "match": "\\b(0[xX][0-9a-fA-F_]+|0[bB][01_]+|[0-9][0-9_]*(\\.[0-9_]+)?([eE][+-]?[0-9_]+)?)\\b"
+      "match": "\\b(0[xX][0-9a-fA-F_]+|0[bB][01_]+|0[oO][0-7_]+|[0-9][0-9_]*(\\.[0-9_]+)?([eE][+-]?[0-9_]+)?)\\b"
     }
   ],
   "repository": {

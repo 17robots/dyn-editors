@@ -1,6 +1,6 @@
 id = "dyn"
 name = "Dyn"
-version = "0.1.10"
+version = "0.1.11"
 schema_version = 1
 authors = ["Matthew Dray <mdray@duck.com>"]
 description = "Dyn language support"
@@ -11,7 +11,7 @@ kind = "Rust"
 version = "0.7.0"
 [grammars.dyn]
 repository = "https://github.com/17robots/tree-sitter-dyn.git"
-rev = "5eaf37232b5cff70561b029810b8a811642728a4"
+rev = "367c3c46ee9f8bc2177a120d72b93e546e7f16ab"
 [language_servers.dyn]
 name = "Dyn Language Server"
 languages = ["Dyn"]
