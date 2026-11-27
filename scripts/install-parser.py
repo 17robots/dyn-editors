@@ -20,6 +20,9 @@ with tempfile.TemporaryDirectory(prefix='dyn-parser-') as directory:
     subprocess.run(['git','-C',str(source),'checkout','--quiet','FETCH_HEAD'],check=True)
     output = args.runtime.resolve()/('parser/dyn.dll' if os.name == 'nt' else 'parser/dyn.so')
     output.parent.mkdir(parents=True,exist_ok=True)
+    sources = [str(source/'src/parser.c')]
+    if (source/'src/scanner.c').is_file():
+        sources.append(str(source/'src/scanner.c'))
     subprocess.run([*shlex.split(os.environ.get('CC','clang' if os.name == 'nt' else 'cc')),'-O2',*([] if os.name == 'nt' else ['-fPIC']),'-shared','-I',str(source/'src'),
-                    str(source/'src/parser.c'),str(source/'src/scanner.c'),'-o',str(output)],check=True)
+                    *sources,'-o',str(output)],check=True)
     print(output)
